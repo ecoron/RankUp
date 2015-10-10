@@ -7,6 +7,8 @@ use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\TextFormat;
 use pocketmine\item\Item;
+use VoteRanks\VoteReward\QueryTask;
+
 class VoteReward extends PluginBase {
   private $commands, $key, $url;
 
@@ -21,6 +23,11 @@ class VoteReward extends PluginBase {
     $this->key = $c["API-Key"];
     $this->url = $c["Vote-URL"];
 
+  }
+
+  public function requestApiTaks() {
+      $query = new QueryTask("http://minecraftpocket-servers.com/api/?object=votes&element=claim&key=" . $this->key . "&username=" . $p->getName(),$p->getName(),true);
+      $this->getServer()->getScheduler()->scheduleAsyncTask($query);
   }
 
   public function give(Player $p,$s) {

@@ -6,14 +6,17 @@ use pocketmine\command\CommandSender;
 use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\TextFormat;
+use VoteRanks\RankUp;
 use VoteRanks\VoteReward\VoteReward;
-use VoteRanks\VoteReward\QueryTask;
+
 
 class VoteRanks extends PluginBase{
 
-    var $purePerms;
+    var $voteRewards;
 
     public function onEnable(){
+        $this->voteRewards = new VoteReward();
+        $this->rankUp = new RankUp($this->getServer(), $this->getLogger());
     }
 
     public function onDisable(){
@@ -25,22 +28,15 @@ class VoteRanks extends PluginBase{
             return true;
         }
         if($p->hasPermission("voteranks") || $p->hasPermission("voteranks.vote")) {
-            $query = new QueryTask("http://minecraftpocket-servers.com/api/?object=votes&element=claim&key=" . $this->key . "&username=" . $p->getName(),$p->getName(),true);
-            $this->getServer()->getScheduler()->scheduleAsyncTask($query);
+            $this->voteRewards->requestApiTaks();
         } else {
             $p->sendMessage("You do not have permission to vote.");
         }
         return true;
     }
 
-    private function initPPerms() {
-        if(($plugin = $this->getServer()->getPluginManager()->getPlugin("PurePerms")) instanceof Plugin){
-            $this->purePerms = $plugin;
-            $this->getLogger()->info("Successfully loaded with PurePerms");
-        }else{
-            $this->getLogger()->alert("Dependency PurePerms not found");
-            $this->getServer()->getPluginManager()->disablePlugin($this);
-        }
+    public function executeRankUp($p, $s) {
+        $this->rankUp->rankUp($p, $s);
+        $this->voteRewards->give($p, $s);
     }
-
 }

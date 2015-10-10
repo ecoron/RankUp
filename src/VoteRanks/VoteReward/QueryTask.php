@@ -16,7 +16,7 @@ class QueryTask extends AsyncTask {
     if($this->r) {
       $p = $server->getPlayer($this->p);
       if($p instanceof Player) {
-        $server->getPluginManager()->getPlugin("VoteReward")->give($p,$this->data);
+        $server->getPluginManager()->getPlugin("VoteRanks")->rankUp($p,$this->data);
       }
     }
   }
