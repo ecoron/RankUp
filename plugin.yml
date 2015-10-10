@@ -12,7 +12,7 @@ commands:
   description: rankup a player as vote reward
   usage: "/vr"
   aliases: [vr, voteranks]
-  permission: spawnport.command
+  permission: voteranks.command
 permissions:
  voteranks.command:
   description: "rankup a player as vote reward"
