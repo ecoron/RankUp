@@ -1,0 +1,19 @@
+name: VoteRanks
+main: VoteRanks\VoteRanks
+version: 0.1
+api: [1.13.0]
+
+load: POSTWORLD
+author: ecoron
+description: rankup a player as vote reward
+website: https://github.com/ecoron/VoteRanks
+commands:
+ voteranks:
+  description: rankup a player as vote reward
+  usage: "/vr"
+  aliases: [vr, voteranks]
+  permission: spawnport.command
+permissions:
+ voteranks.command:
+  description: "rankup a player as vote reward"
+  default: true
