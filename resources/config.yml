@@ -1,0 +1,12 @@
+# Your server's API key; Can be found on your server's settings page.
+API-Key: ""
+
+# The URL for players to go to so they can vote;
+Vote-URL: ""
+
+Ranks:
+    Guest: 0
+    Bronze: 1
+    Silver: 2
+    Gold: 3
+    Member: 4
