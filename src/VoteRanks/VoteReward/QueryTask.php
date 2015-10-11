@@ -10,7 +10,7 @@ class QueryTask extends AsyncTask
     private $player;
     private $result;
 
-    function __construct($url,Player $player,$result)
+    function __construct($url,$player,$result)
     {
         $this->url = $url;
         $this->player = $player;

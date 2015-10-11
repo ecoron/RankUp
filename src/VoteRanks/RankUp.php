@@ -4,6 +4,7 @@ namespace VoteRanks;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\Player;
+use pocketmine\plugin\Plugin;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\TextFormat;
 use VoteRanks\Config;
@@ -43,7 +44,7 @@ class RankUp {
     public function getUserGroup(Player $player)
     {
         $ppuser = $this->purePerms->getUser($player);
-        $ppusergroup = $this->purePerms->getUserGroup($ppuser);
+        $ppusergroup = $ppuser->getGroup();
         return $ppusergroup->getName();
     }
 
