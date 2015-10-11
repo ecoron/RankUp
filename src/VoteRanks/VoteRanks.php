@@ -26,9 +26,6 @@ class VoteRanks extends PluginBase{
         $this->config = new Config($this->getDataFolder() . "config.yml");
         $this->voteReward = new VoteReward($this->config);
         $this->rankUp = new RankUp($this->config, $this->getServer()->getPluginManager(), $this->getLogger());
-        if ($this->rankUp->initPurePerms() == false) {
-            $this->getServer()->getPluginManager()->disablePlugin($this);
-        }
     }
 
     public function onDisable(){
@@ -55,6 +52,11 @@ class VoteRanks extends PluginBase{
                 break;
             case "1":
                     $this->voteReward->requestApiTaks($this->getServer()->getScheduler(), $player->getName(), false);
+
+                    if ($this->rankUp->initPurePerms() == false) {
+                        $this->getServer()->getPluginManager()->disablePlugin($this);
+                    }
+
                     $this->rankUp->rankUp($this, $player);
                     $command = $this->voteReward->voteSuccess();
                     $this->getServer()->dispatchCommand(new ConsoleCommandSender(),str_replace("{PLAYER}",$player->getName(),$command));
