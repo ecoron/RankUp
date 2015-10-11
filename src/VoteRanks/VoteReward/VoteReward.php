@@ -16,8 +16,8 @@ class VoteReward
         $this->config = $config;
     }
 
-  public function requestApiTaks($scheduler, $playerName) {
-      $query = new QueryTask("http://minecraftpocket-servers.com/api/?object=votes&element=claim&key=" . $this->config->getApiKey() . "&username=" . $playerName, $playerName, true);
+  public function requestApiTaks($scheduler, $playerName, $result) {
+      $query = new QueryTask("http://minecraftpocket-servers.com/api/?object=votes&element=claim&key=" . $this->config->getApiKey() . "&username=" . $playerName, $playerName, $result);
       $scheduler->scheduleAsyncTask($query);
   }
 
@@ -27,11 +27,10 @@ class VoteReward
       return "You haven't voted yet!\n" . $this->config->getVoteUrl() . "\nVote to get higher rank!";
   }
 
-  public function voteSuccess($scheduler, $playerName)
+  public function voteSuccess()
   {
       //response = 1
-      $query = new QueryTask("http://minecraftpocket-servers.com/api/?action=post&object=votes&element=claim&key=" . $this->config->getApiKey() . "&username=" . $playerName, $playerName, false);
-      $scheduler->scheduleAsyncTask($query);
+      return "say {PLAYER} voted with /vote and got a higher rank!";
   }
 
   public function voteClosed()

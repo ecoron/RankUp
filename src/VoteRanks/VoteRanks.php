@@ -37,7 +37,7 @@ class VoteRanks extends PluginBase{
             return true;
         }
         if($player->hasPermission("voteranks") || $player->hasPermission("voteranks.vote")) {
-            $this->voteReward->requestApiTaks($this->getServer()->getScheduler(), $player->getName());
+            $this->voteReward->requestApiTaks($this->getServer()->getScheduler(), $player->getName(), true);
         } else {
             $player->sendMessage("You do not have permission to vote.");
         }
@@ -45,13 +45,16 @@ class VoteRanks extends PluginBase{
     }
 
     public function executeRankUp(Player $player, $response) {
+        $message = null;
         switch($response) {
             case "0":
                     $message = $this->voteReward->voteOpen();
                 break;
             case "1":
-                    $this->voteReward->voteSuccess($this->getServer()->getScheduler(), $player->getName());
+                    $this->voteReward->requestApiTaks($this->getServer()->getScheduler(), $player->getName(), false);
                     $this->rankUp->rankUp($player);
+                    $command = $this->voteReward->voteSuccess();
+                    $this->getServer()->dispatchCommand(new ConsoleCommandSender(),str_replace("{PLAYER}",$player->getName(),$command));
                 break;
             case "2":
                     $message = $this->voteReward->voteClosed();
@@ -62,6 +65,8 @@ class VoteRanks extends PluginBase{
                 break;
         }
 
-        $player->sendMessage($message);
+        if($message) {
+            $player->sendMessage($message);
+        }
     }
 }

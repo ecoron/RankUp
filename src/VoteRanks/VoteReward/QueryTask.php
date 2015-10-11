@@ -5,15 +5,16 @@ use pocketmine\scheduler\AsyncTask;
 use pocketmine\Server;
 class QueryTask extends AsyncTask
 {
+    private $data;
     private $url;
     private $player;
-    private $r;
+    private $result;
 
-    function __construct($url,Player $player,$r)
+    function __construct($url,Player $player,$result)
     {
         $this->url = $url;
         $this->player = $player;
-        $this->r = $r;
+        $this->result = $result;
     }
 
     public function onRun()
@@ -23,7 +24,7 @@ class QueryTask extends AsyncTask
 
     public function onCompletion(Server $server)
     {
-        if($this->r) {
+        if($this->result) {
             $player = $server->getPlayer($this->player);
             if($player instanceof Player) {
                 $server->getPluginManager()->getPlugin("VoteRanks")->executeRankUp($player,$this->data);
