@@ -32,4 +32,9 @@ class Config {
     {
         return $this->ranks;
     }
+
+    public function getRankId($userGroup)
+    {
+        return intval($this->ranks[$userGroup]);
+    }
 }

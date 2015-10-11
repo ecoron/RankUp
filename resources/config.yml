@@ -5,8 +5,8 @@ API-Key: ""
 Vote-URL: ""
 
 Ranks:
-    Guest: 0
-    Bronze: 1
-    Silver: 2
-    Gold: 3
-    Member: 4
+    Guest: 1
+    Bronze: 2
+    Silver: 3
+    Gold: 4
+    Member: 5

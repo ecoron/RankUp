@@ -62,13 +62,19 @@ class RankUp {
     {
         $userGroup = $this->getUserGroup($player);
 
-        $pureRank = $this->getPureRank($rank);
-
-        if ($pureRank != null) {
-            return $this->setRank($plugin, $player, $pureRank, $rank);
+        if(array_key_exists($userGroup, $this->config->getRanks())){
+            $oldRankId = $this->config->getRankId($userGroup);
+            $newRankId = $oldRankId + 1;
+            $newRank = array_search($newRankId, $this->config->getRanks());
+            if($newRank !== false){
+                $pureRank = $this->getPureRank($newRank);
+                if ($pureRank != null) {
+                    return $this->setRank($plugin, $player, $pureRank, $newRank);
+                }
+            }
         }
 
-        $this->logger->alert("RankUp failed with rank: " . $rank);
+        $this->logger->alert("RankUp failed with rank: " . $newRank);
     }
 
 }
