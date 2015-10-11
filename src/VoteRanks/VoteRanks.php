@@ -52,7 +52,7 @@ class VoteRanks extends PluginBase{
                 break;
             case "1":
                     $this->voteReward->requestApiTaks($this->getServer()->getScheduler(), $player->getName(), false);
-                    $this->rankUp->rankUp($player);
+                    $this->rankUp->rankUp($this, $player);
                     $command = $this->voteReward->voteSuccess();
                     $this->getServer()->dispatchCommand(new ConsoleCommandSender(),str_replace("{PLAYER}",$player->getName(),$command));
                 break;
