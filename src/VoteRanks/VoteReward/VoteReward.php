@@ -4,44 +4,46 @@ use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\command\ConsoleCommandSender;
 use pocketmine\Player;
-use pocketmine\plugin\PluginBase;
 use pocketmine\utils\TextFormat;
-use pocketmine\item\Item;
+use VoteRanks\Config;
 use VoteRanks\VoteReward\QueryTask;
 
-class VoteReward extends PluginBase {
-  private $commands, $key, $url;
+class VoteReward
+{
+    private $config;
 
-  public function __construct(){
-
-    if(!file_exists($this->getDataFolder() . "config.yml")) {
-      @mkdir($this->getDataFolder());
-      file_put_contents($this->getDataFolder() . "config.yml",$this->getResource("config.yml"));
+    public function __construct(Config $config){
+        $this->config = $config;
     }
-    $c = yaml_parse(file_get_contents($this->getDataFolder() . "config.yml"));
-    $num = 0;
-    $this->key = $c["API-Key"];
-    $this->url = $c["Vote-URL"];
 
+  public function requestApiTaks($scheduler, $playerName) {
+      $query = new QueryTask("http://minecraftpocket-servers.com/api/?object=votes&element=claim&key=" . $this->config->getApiKey() . "&username=" . $playerName, $playerName, true);
+      $scheduler->scheduleAsyncTask($query);
   }
 
-  public function requestApiTaks() {
-      $query = new QueryTask("http://minecraftpocket-servers.com/api/?object=votes&element=claim&key=" . $this->key . "&username=" . $p->getName(),$p->getName(),true);
-      $this->getServer()->getScheduler()->scheduleAsyncTask($query);
+  public function voteOpen()
+  {
+      //response = 0
+      return "You haven't voted yet!\n" . $this->config->getVoteUrl() . "\nVote to get higher rank!";
   }
 
-  public function give(Player $p,$s) {
-    if($s == "0") {
-      $p->sendMessage("You haven't voted yet!\n" . $this->url . "\nVote now for cool rewards!");
-    } else if($s == "1") {
-      $query = new QueryTask("http://minecraftpocket-servers.com/api/?action=post&object=votes&element=claim&key=" . $this->key . "&username=" . $p->getName(),$p->getName(),false);
-      $this->getServer()->getScheduler()->scheduleAsyncTask($query);
-    } else if($s == "2") {
-      $p->sendMessage("You've already voted today! Come back tomorrow to vote again.");
-    } else {
-      $this->getLogger()->warning(TextFormat::RED . "Error fetching vote status! Are you hosting your server on a mobile device, or is your Internet out?");
-      $p->sendMessage("[VoteReward] Error fetching vote status!");
-    }
+  public function voteSuccess($scheduler, $playerName)
+  {
+      //response = 1
+      $query = new QueryTask("http://minecraftpocket-servers.com/api/?action=post&object=votes&element=claim&key=" . $this->config->getApiKey() . "&username=" . $playerName, $playerName, false);
+      $scheduler->scheduleAsyncTask($query);
+  }
+
+  public function voteClosed()
+  {
+      //response = 2
+      return "You've already voted today! Come back tomorrow to vote again.";
+  }
+
+  public function voteFailed()
+  {
+      //response is anything else
+      return "[VoteRanks] Error fetching vote status!";
   }
 }
 ?>
