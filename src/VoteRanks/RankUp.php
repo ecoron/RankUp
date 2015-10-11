@@ -22,17 +22,17 @@ class RankUp {
         $this->config = $config;
         $this->pluginManager = $pluginManager;
         $this->logger = $logger;
-        $this->initPurePerms();
     }
 
-    private function initPurePerms() {
+    public function initPurePerms() {
         if(($plugin = $this->pluginManager->getPlugin("PurePerms")) instanceof Plugin){
             $this->purePerms = $plugin;
             $this->logger->info("Successfully loaded with PurePerms");
-        }else{
-            $this->logger->alert("Dependency PurePerms not found");
-            $this->pluginManager->disablePlugin($this);
+            return true;
         }
+
+        $this->logger->alert("Dependency PurePerms not found");
+        return false;
     }
 
     public function getPureRank($groupName)

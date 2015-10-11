@@ -26,6 +26,9 @@ class VoteRanks extends PluginBase{
         $this->config = new Config($this->getDataFolder() . "config.yml");
         $this->voteReward = new VoteReward($this->config);
         $this->rankUp = new RankUp($this->config, $this->getServer()->getPluginManager(), $this->getLogger());
+        if ($this->rankUp->initPurePerms() == false) {
+            $this->getServer()->getPluginManager()->disablePlugin($this);
+        }
     }
 
     public function onDisable(){
