@@ -60,7 +60,7 @@ class VoteRanks extends PluginBase{
 
                     $this->rankUp->rankUp($this, $player);
                     $command = "say " . $this->config->getMessage("vote-success");
-                    $this->getServer()->dispatchCommand(new ConsoleCommandSender(),str_replace("{PLAYER}",$player->getName(),$command));
+                    $this->getServer()->dispatchCommand(new ConsoleCommandSender(),str_replace("##player##",$player->getName(),$command));
                 break;
             case "2":
                     $message = $this->config->getMessage("vote-nextday");

@@ -45,7 +45,7 @@ Messages:
     rank-new: "You are now rank ##rank##"
     rank-failed: "RankUp failed with rank: ##rank##"
     vote-nextday: "You've already voted today! Come back tomorrow to vote again."
-    vote-success: "{PLAYER} voted with /vote and got a higher rank!"
+    vote-success: "##player## voted with /vote and got a higher rank!"
     vote-open: "You haven't voted yet!\n +++ ##voteurl## +++ \nVote to get higher rank!"
 ```
 
