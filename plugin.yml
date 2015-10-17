@@ -1,19 +1,19 @@
 name: VoteRanks
 main: VoteRanks\VoteRanks
-version: 0.1
-api: [1.13.0]
+version: 1.0
+api: [1.12.0]
 
 load: POSTWORLD
-author: ecoron
+author: [ecoron, LittleRon]
 description: rankup a player as vote reward
 website: https://github.com/ecoron/VoteRanks
 commands:
- voteranks:
-  description: rankup a player as vote reward
-  usage: "/vr"
-  aliases: [vr, voteranks]
-  permission: voteranks.command
+    voteranks:
+        description: rankup a player as vote reward
+        usage: "/vr"
+        aliases: [vr, voteranks]
+    permission: voteranks.command
 permissions:
- voteranks.command:
-  description: "rankup a player as vote reward"
-  default: true
+    voteranks.command:
+        description: "rankup a player as vote reward"
+        default: true
