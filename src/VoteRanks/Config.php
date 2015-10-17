@@ -13,9 +13,10 @@ class Config {
     {
         $config = yaml_parse(file_get_contents($configFile));
         $num = 0;
-        $this->apiKey = $config["API-Key"];
-        $this->voteUrl = $config["Vote-URL"];
+        $this->apiKey = $config["APIKey"];
+        $this->voteUrl = $config["VoteURL"];
         $this->ranks = $config["Ranks"];
+        $this->messages = $config["Messages"];
     }
 
     public function getApiKey()
@@ -36,5 +37,12 @@ class Config {
     public function getRankId($userGroup)
     {
         return intval($this->ranks[$userGroup]);
+    }
+
+    public function getMessage($messageId)
+    {
+        if(array_key_exists($messageId, $this->messages)) {
+            return $this->messages[$messageId];
+        }
     }
 }

@@ -1,12 +1,26 @@
-# Your server's API key; Can be found on your server's settings page.
-API-Key: ""
+# API key; Can be found on your server settings page.
+APIKey: ""
 
-# The URL for players to go to so they can vote;
-Vote-URL: ""
+# URL where players can vote for this server;
+VoteURL: ""
 
+# list of ranks that can be reached. cutomize this with your server ranks
 Ranks:
     Guest: 1
     Bronze: 2
     Silver: 3
     Gold: 4
     Member: 5
+
+#messages
+Messages:
+    command-in-game: "Command must be used in-game."
+    error-fetching-vote: "[VoteRanks] Error fetching vote status! Try again later."
+    no-permission: "You do not have permission to vote."
+    pureperms-loaded: "Successfully loaded with PurePerms"
+    pureperms-notfound: "Dependency PurePerms not found"
+    rank-new: "You are now rank ##rank##"
+    rank-failed: "RankUp failed with rank: ##rank##"
+    vote-nextday: "You've already voted today! Come back tomorrow to vote again."
+    vote-success: "{PLAYER} voted with /vote and got a higher rank!"
+    vote-open: ""You haven't voted yet!\n +++ ##voteurl## +++ \nVote to get higher rank!""

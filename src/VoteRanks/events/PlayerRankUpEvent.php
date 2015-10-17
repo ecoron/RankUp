@@ -1,5 +1,4 @@
 <?php
-
 namespace VoteRanks\events;
 
 use pocketmine\event\Cancellable;

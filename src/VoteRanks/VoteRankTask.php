@@ -1,14 +1,19 @@
 <?php
-namespace VoteRanks\VoteReward;
+namespace VoteRanks;
+
 use pocketmine\Player;
 use pocketmine\scheduler\AsyncTask;
 use pocketmine\Server;
-class QueryTask extends AsyncTask
+
+class VoteRankTask extends AsyncTask
 {
-    private $data;
-    private $url;
-    private $player;
-    private $result;
+    var $data;
+
+    var $url;
+
+    var $player;
+
+    var $result;
 
     function __construct($url,$player,$result)
     {

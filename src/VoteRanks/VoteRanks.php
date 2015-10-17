@@ -9,13 +9,13 @@ use pocketmine\plugin\PluginBase;
 use pocketmine\utils\TextFormat;
 use VoteRanks\Config;
 use VoteRanks\RankUp;
-use VoteRanks\VoteReward\VoteReward;
+use VoteRanks\VoteRankTask;
 
 
 class VoteRanks extends PluginBase{
 
     var $config;
-    var $voteReward;
+    var $voteRankTask;
     var $rankUp;
 
     public function onEnable(){
@@ -25,7 +25,7 @@ class VoteRanks extends PluginBase{
             file_put_contents($this->getDataFolder() . "config.yml",$this->getResource("config.yml"));
         }
         $this->config = new Config($this->getDataFolder() . "config.yml");
-        $this->voteReward = new VoteReward($this->config);
+        $this->voteRankTask = new VoteRankTask($this->config);
         $this->rankUp = new RankUp($this->config, $this->getServer()->getPluginManager(), $this->getLogger());
     }
 
@@ -34,13 +34,13 @@ class VoteRanks extends PluginBase{
 
     public function onCommand(CommandSender $player,Command $cmd,$label,array $args) {
         if(!($player instanceof Player)) {
-            $player->sendMessage("Command must be used in-game.");
+            $player->sendMessage($this->config->getMessage("command-in-game"));
             return true;
         }
         if($player->hasPermission("voteranks") || $player->hasPermission("voteranks.vote")) {
-            $this->voteReward->requestApiTaks($this->getServer()->getScheduler(), $player->getName(), true);
+            $this->requestApiTaks($player->getName(), true);
         } else {
-            $player->sendMessage("You do not have permission to vote.");
+            $player->sendMessage($this->config->getMessage("no-permission"));
         }
         return true;
     }
@@ -49,30 +49,35 @@ class VoteRanks extends PluginBase{
         $message = null;
         switch($response) {
             case "0":
-                    $message = $this->voteReward->voteOpen();
+                    $message = str_replace("##voteurl##", $this->config->getVoteUrl(), $this->config->getMessage("vote-open"));
                 break;
             case "1":
-                    $this->voteReward->requestApiTaks($this->getServer()->getScheduler(), $player->getName(), false);
+                    $this->requestApiTaks($player->getName(), false);
 
                     if ($this->rankUp->initPurePerms() == false) {
                         $this->getServer()->getPluginManager()->disablePlugin($this);
                     }
 
                     $this->rankUp->rankUp($this, $player);
-                    $command = $this->voteReward->voteSuccess();
+                    $command = "say " . $this->config->getMessage("vote-success");
                     $this->getServer()->dispatchCommand(new ConsoleCommandSender(),str_replace("{PLAYER}",$player->getName(),$command));
                 break;
             case "2":
-                    $message = $this->voteReward->voteClosed();
+                    $message = $this->config->getMessage("vote-nextday");
                 break;
             default:
-                    $this->getLogger()->warning(TextFormat::RED . "Error fetching vote status! Try again later.");
-                    $message = $this->voteReward->voteFailed();
+                    $message = $this->config->getMessage("error-fetching-vote");
+                    $this->getLogger()->warning(TextFormat::RED . $message);
                 break;
         }
 
         if($message) {
             $player->sendMessage($message);
         }
+    }
+
+    private function requestApiTaks($playerName, $result) {
+        $query = new VoteRankTask("http://minecraftpocket-servers.com/api/?object=votes&element=claim&key=" . $this->config->getApiKey() . "&username=" . $playerName, $playerName, $result);
+        $this->getServer()->getScheduler()->scheduleAsyncTask($query);
     }
 }

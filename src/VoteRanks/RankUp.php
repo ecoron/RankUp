@@ -28,11 +28,11 @@ class RankUp {
     public function initPurePerms() {
         if(($plugin = $this->pluginManager->getPlugin("PurePerms")) instanceof Plugin){
             $this->purePerms = $plugin;
-            $this->logger->info("Successfully loaded with PurePerms");
+            $this->logger->info($this->config->getMessage("pureperms-loaded"));
             return true;
         }
 
-        $this->logger->alert("Dependency PurePerms not found");
+        $this->logger->alert($this->config->getMessage("pureperms-notfound"));
         return false;
     }
 
@@ -50,7 +50,8 @@ class RankUp {
 
     public function setRank(VoteRanks $plugin, Player $player, $pureRank, $rank)
     {
-        $event = new PlayerRankUpEvent($plugin, $player, $rank, "You are now rank ".$rank);
+        $message = str_replace("##rank##", $rank, $this->config->getMessage("rank-new"));
+        $event = new PlayerRankUpEvent($plugin, $player, $rank, $message);
         $this->pluginManager->callEvent($event);
 
         if(!$event->isCancelled()){
@@ -75,7 +76,8 @@ class RankUp {
             }
         }
 
-        $this->logger->alert("RankUp failed with rank: " . $newRank);
+        $message = str_replace("##rank##", $rank, $this->config->getMessage("rank-failed"));
+        $this->logger->alert($message);
     }
 
 }
