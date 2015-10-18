@@ -25,7 +25,7 @@ class TimerTaskCommand{
         $sub = array_shift($args);
         switch(strtolower($sub)){
             case "check":
-                if(isset($args[0])){
+                if(!empty($args[0])){
                     if(!$this->plugin->getServer()->getOfflinePlayer($args[0])->hasPlayedBefore()){
                         return $this->config->getMessage("timer-neverplayed");
                     }

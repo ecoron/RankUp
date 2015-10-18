@@ -104,8 +104,8 @@ class RankUp {
         $timeplayed = $data->get(strtolower($player->getName()));
         $newRankId = $oldRankId + 1;
         $newRank = array_search($newRankId, $this->config->getRanks());
-        if($newRank !== false && $timplayed < $this->config->getAutoRankMinutes($newRank)){
-            return $this->config->getAutoRankMinutes($newRank) - $timplayed;
+        if($newRank !== false && $timeplayed < $this->config->getAutoRankMinutes($newRank)){
+            return $this->config->getAutoRankMinutes($newRank) - $timeplayed;
         }
 
         return false;
