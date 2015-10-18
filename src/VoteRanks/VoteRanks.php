@@ -12,6 +12,7 @@ use VoteRanks\Config;
 use VoteRanks\RankUp;
 use VoteRanks\VoteRankTask;
 use VoteRanks\TimerTask;
+use VoteRanks\TimerTaskCommand;
 
 
 class VoteRanks extends PluginBase{
@@ -28,13 +29,12 @@ class VoteRanks extends PluginBase{
             file_put_contents($this->getDataFolder() . "config.yml",$this->getResource("config.yml"));
         }
         $this->config = new Config($this->getDataFolder() . "config.yml");
-        $this->voteRankTask = new VoteRankTask($this->config);
         $this->rankUp = new RankUp($this->config, $this->getServer()->getPluginManager(), $this->getLogger());
         $this->data = new PMConfig($this->getDataFolder()."data.properties", PMConfig::PROPERTIES);
         //TimerTask
         $this->getServer()->getScheduler()->scheduleDelayedRepeatingTask(new TimerTask($this), 1200, 1200);
         # Command
-        $this->timerTaskCommand = new TimeTaskCommand($this);
+        $this->timerTaskCommand = new TimerTaskCommand($this, $this->config);
 
     }
 

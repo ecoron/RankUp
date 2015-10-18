@@ -7,7 +7,7 @@ use pocketmine\Player;
 use VoteRanks\VoteRanks;
 use VoteRanks\Config;
 
-class TimeRanksCommand{
+class TimerTaskCommand{
 
     private $plugin;
 
@@ -49,7 +49,7 @@ class TimeRanksCommand{
                 }
 
                 $timeplayed = $this->plugin->data->get(strtolower($sender->getName()));
-                $timetoplay = $this->plugin->rankUp->getTimeToAutoRankUp($this->plugin->data);
+                $timetoplay = $this->plugin->rankUp->getTimeToAutoRankUp($this->plugin->data, $sender);
                 $message = str_replace("##timeplayed##", $timeplayed, $this->config->getMessage("timer-timeplayed"));
                 $message = str_replace("##timetoplay##", $timetoplay, $this->config->getMessage("timer-timeplayed"));
                 return $message;

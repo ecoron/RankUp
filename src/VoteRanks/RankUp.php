@@ -80,7 +80,7 @@ class RankUp {
         $this->logger->alert($message);
     }
 
-    public function autoRankUp($data)
+    public function autoRankUp($data, Player $player)
     {
         $userGroup = $this->getUserGroup($player);
         $oldRankId = $this->config->getRankId($userGroup);
@@ -97,7 +97,7 @@ class RankUp {
         }
     }
 
-    public function getTimeToAutoRankUp($data)
+    public function getTimeToAutoRankUp($data, Player $player)
     {
         $userGroup = $this->getUserGroup($player);
         $oldRankId = $this->config->getRankId($userGroup);
