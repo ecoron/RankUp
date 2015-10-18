@@ -38,7 +38,7 @@ Messages:
     timer-usage: "Use /tr check ##player##"
     timer-neverplayed: "Player ##player## never played on this server"
     timer-newplayer: "##player## has played less than 1 minute on this server"
-    timer-newrank: "##player reached new Rank: ##rank##"
+    timer-newrank: "##player## reached new Rank: ##rank##"
     timer-rankis: "Rank is: ##rank##"
     timer-timeplayed: "You have played ##timeplayed## minutes on this server. ##timetoplay## until next rankup"
     timer-timeplayer: "Has played ##timeplayed## minutes on this server"

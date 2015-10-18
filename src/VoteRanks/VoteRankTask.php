@@ -15,11 +15,10 @@ class VoteRankTask extends AsyncTask
 
     var $result;
 
-    function __construct($url,$player,$result)
+    function __construct($url, $player)
     {
         $this->url = $url;
         $this->player = $player;
-        $this->result = $result;
     }
 
     public function onRun()
@@ -29,12 +28,12 @@ class VoteRankTask extends AsyncTask
 
     public function onCompletion(Server $server)
     {
-        if($this->result) {
-            $player = $server->getPlayer($this->player);
-            if($player instanceof Player) {
-                $server->getPluginManager()->getPlugin("VoteRanks")->executeRankUp($player,$this->data);
-            }
+
+        $player = $server->getPlayer($this->player);
+        if($player instanceof Player && in_array($this->data, array("1","2"))) {
+            $server->getPluginManager()->getPlugin("VoteRanks")->executeRankUp($player,$this->data);
         }
+
     }
 }
 ?>

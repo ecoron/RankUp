@@ -3,6 +3,7 @@ namespace VoteRanks;
 
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
+use pocketmine\command\ConsoleCommandSender;
 use pocketmine\Player;
 use pocketmine\plugin\Plugin;
 use pocketmine\plugin\PluginBase;
@@ -76,7 +77,7 @@ class RankUp {
             }
         }
 
-        $message = str_replace("##rank##", $rank, $this->config->getMessage("rank-failed"));
+        $message = str_replace("##rank##", $userGroup, $this->config->getMessage("rank-failed"));
         $this->logger->alert($message);
     }
 

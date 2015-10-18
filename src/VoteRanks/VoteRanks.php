@@ -50,7 +50,7 @@ class VoteRanks extends PluginBase{
             return true;
         }
         if(strtolower($cmd->getName()) === "voteranks") {
-            $this->requestApiTaks($player->getName(), true);
+            $this->requestApiTaks($player->getName());
         } elseif (strtolower($cmd->getName()) === "timeranks"){
                 $message = $this->timerTaskCommand->run($player, $args);
                 $player->sendMessage($message);
@@ -67,7 +67,7 @@ class VoteRanks extends PluginBase{
                     $message = str_replace("##voteurl##", $this->config->getVoteUrl(), $this->config->getMessage("vote-open"));
                 break;
             case "1":
-                    $this->requestApiTaks($player->getName(), false);
+                    $this->requestApiTaks($player->getName(), "action=post&");
 
                     $this->rankUp->rankUp($this, $player);
                     $command = "say " . $this->config->getMessage("vote-success");
@@ -88,8 +88,8 @@ class VoteRanks extends PluginBase{
         }
     }
 
-    private function requestApiTaks($playerName, $result) {
-        $query = new VoteRankTask("http://minecraftpocket-servers.com/api/?object=votes&element=claim&key=" . $this->config->getApiKey() . "&username=" . $playerName, $playerName, $result);
+    private function requestApiTaks($playerName, $action="") {
+        $query = new VoteRankTask("http://minecraftpocket-servers.com/api/?" . $action ."object=votes&element=claim&key=" . $this->config->getApiKey() . "&username=" . $playerName, $playerName);
         $this->getServer()->getScheduler()->scheduleAsyncTask($query);
     }
 }
