@@ -11,7 +11,7 @@ commands:
     voteranks:
         description: rankup a player as vote reward
         usage: "/vr"
-        aliases: [vr, voteranks]
+        aliases: [vr, voteranks, vote]
         permission: voteranks.command
     timeranks:
         description: check time to play for next rank
