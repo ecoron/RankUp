@@ -80,12 +80,12 @@ class RankUp {
         $this->logger->alert($message);
     }
 
-    public function autoRankUp($data, Player $player)
+    public function autoRankUp(VoteRanks $plugin, Player $player)
     {
         $userGroup = $this->getUserGroup($player);
         $oldRankId = $this->config->getRankId($userGroup);
         $oldRankMinutes = $this->config->getAutoRankMinutes($userGroup);
-        $timeplayed = $data->get(strtolower($player->getName()));
+        $timeplayed = $plugin->data->get(strtolower($player->getName()));
         $newRankId = $oldRankId + 1;
         $newRank = array_search($newRankId, $this->config->getRanks());
 

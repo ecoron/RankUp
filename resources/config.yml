@@ -7,15 +7,21 @@ VoteURL: ""
 # list of ranks that can be reached. cutomize this with your server ranks
 Ranks:
     Guest: 1
-    Bronze: 2
-    Silver: 3
-    Gold: 4
-    Member: 5
+    Stone: 2
+    Bronze: 3
+    Silver: 4
+    Gold: 5
+    Member: 6
 
 # time to reach this rank, ranks must have the same name like in pureperms
 AutoRanks:
     Guest: true
-    Silver: 20
+    Stone: 20
+    Bronze: 60
+    Silver: 120
+    Gold: 240
+    Member: 720
+    
 
 #messages
 Messages:
