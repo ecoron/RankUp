@@ -47,6 +47,9 @@ class Config {
 
     public function getAutoRankMinutes($userGroup)
     {
+        if($userGroup == false) {
+            return false;
+        }
         if(array_key_exists($userGroup, $this->autoRanks)) {
             return $this->autoRanks[$userGroup];
         }
@@ -56,6 +59,9 @@ class Config {
 
     public function getRankId($userGroup)
     {
+        if($userGroup == false) {
+            return false;
+        }
         if(array_key_exists($userGroup, $this->ranks)) {
             return intval($this->ranks[$userGroup]);
         }

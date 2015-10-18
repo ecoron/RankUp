@@ -85,7 +85,6 @@ class RankUp {
     {
         $userGroup = $this->getUserGroup($player);
         $oldRankId = $this->config->getRankId($userGroup);
-        $oldRankMinutes = $this->config->getAutoRankMinutes($userGroup);
         $timeplayed = $plugin->data->get(strtolower($player->getName()));
         $newRank = false;
         if($oldRankId !== false) {
