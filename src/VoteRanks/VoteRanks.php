@@ -60,18 +60,20 @@ class VoteRanks extends PluginBase{
         return true;
     }
 
-    public function executeRankUp(Player $player, $response) {
+    public function executeRankUp(Player $player, $response, $gotreward = false) {
         $message = null;
         switch($response) {
             case "0":
                     $message = str_replace("##voteurl##", $this->config->getVoteUrl(), $this->config->getMessage("vote-open"));
                 break;
             case "1":
-                    $this->requestApiTaks($player->getName(), "action=post&");
+                    if($gotreward == false) {
+                        $this->requestApiTaks($player->getName(), "action=post&", true);
 
-                    $this->rankUp->rankUp($this, $player);
-                    $command = "say " . $this->config->getMessage("vote-success");
-                    $this->getServer()->dispatchCommand(new ConsoleCommandSender(),str_replace("##player##",$player->getName(),$command));
+                        $this->rankUp->rankUp($this, $player);
+                        $command = "say " . $this->config->getMessage("vote-success");
+                        $this->getServer()->dispatchCommand(new ConsoleCommandSender(),str_replace("##player##",$player->getName(),$command));
+                    }
                 break;
             case "2":
                     $message = $this->config->getMessage("vote-nextday");
@@ -88,8 +90,8 @@ class VoteRanks extends PluginBase{
         }
     }
 
-    private function requestApiTaks($playerName, $action="") {
-        $query = new VoteRankTask("http://minecraftpocket-servers.com/api/?" . $action ."object=votes&element=claim&key=" . $this->config->getApiKey() . "&username=" . $playerName, $playerName);
+    private function requestApiTaks($playerName, $action="", $gotreward = false) {
+        $query = new VoteRankTask("http://minecraftpocket-servers.com/api/?" . $action ."object=votes&element=claim&key=" . $this->config->getApiKey() . "&username=" . $playerName, $playerName, $gotreward);
         $this->getServer()->getScheduler()->scheduleAsyncTask($query);
     }
 }
