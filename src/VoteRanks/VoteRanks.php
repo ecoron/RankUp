@@ -49,7 +49,7 @@ class VoteRanks extends PluginBase{
             $player->sendMessage($this->config->getMessage("command-in-game"));
             return true;
         }
-        if($player->hasPermission("voteranks") || $player->hasPermission("voteranks.vote")) {
+        if(strtolower($cmd->getName()) === "voteranks") {
             $this->requestApiTaks($player->getName(), true);
         } elseif (strtolower($cmd->getName()) === "timeranks"){
                 $message = $this->timerTaskCommand->run($player, $args);
