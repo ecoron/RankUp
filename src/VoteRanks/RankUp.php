@@ -89,7 +89,7 @@ class RankUp {
         $newRankId = $oldRankId + 1;
         $newRank = array_search($newRankId, $this->config->getRanks());
 
-        if($newRank !== false && $timplayed >= $this->config->getAutoRankMinutes($newRank)){
+        if($newRank !== false && $timeplayed >= $this->config->getAutoRankMinutes($newRank)){
             $pureRank = $this->getPureRank($newRank);
             if ($pureRank != null) {
                 return $this->setRank($plugin, $player, $pureRank, $newRank);

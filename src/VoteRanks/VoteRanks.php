@@ -83,6 +83,7 @@ class VoteRanks extends PluginBase{
         }
 
         if($message) {
+            $this->getLogger()->info(TextFormat::GREEN . $message);
             $player->sendMessage($message);
         }
     }

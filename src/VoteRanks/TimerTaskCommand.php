@@ -51,7 +51,7 @@ class TimerTaskCommand{
                 $timeplayed = $this->plugin->data->get(strtolower($sender->getName()));
                 $timetoplay = $this->plugin->rankUp->getTimeToAutoRankUp($this->plugin->data, $sender);
                 $message = str_replace("##timeplayed##", $timeplayed, $this->config->getMessage("timer-timeplayed"));
-                $message = str_replace("##timetoplay##", $timetoplay, $this->config->getMessage("timer-timeplayed"));
+                $message = str_replace("##timetoplay##", $timetoplay, $message);
                 return $message;
                 //$sender->sendMessage("Rank is: ".$this->plugin->getRank(strtolower($sender->getName())));
             break;
