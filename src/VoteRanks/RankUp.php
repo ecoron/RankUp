@@ -92,6 +92,9 @@ class RankUp {
         if($newRank !== false && $timeplayed >= $this->config->getAutoRankMinutes($newRank)){
             $pureRank = $this->getPureRank($newRank);
             if ($pureRank != null) {
+                $command = "say " . str_replace("##player##",$player->getName(),$this->config->getMessage("timer-newrank"));
+                $command = str_replace("##rank##", $newRank, $command);
+                $plugin->getServer()->dispatchCommand(new ConsoleCommandSender(), $command);
                 return $this->setRank($plugin, $player, $pureRank, $newRank);
             }
         }
