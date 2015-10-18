@@ -39,12 +39,16 @@ class Config {
 
     public function getAutoRankMinutes($userGroup)
     {
-        $minutes = $this->autoRanks[$userGroup];
+        if(array_key_exists($userGroup, $this->autoRanks)) {
+            return $this->autoRanks[$userGroup];
+        }
     }
 
     public function getRankId($userGroup)
     {
-        return intval($this->ranks[$userGroup]);
+        if(array_key_exists($userGroup, $this->ranks)) {
+            return intval($this->ranks[$userGroup]);
+        }
     }
 
     public function getMessage($messageId)

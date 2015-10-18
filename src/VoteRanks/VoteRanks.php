@@ -30,6 +30,9 @@ class VoteRanks extends PluginBase{
         }
         $this->config = new Config($this->getDataFolder() . "config.yml");
         $this->rankUp = new RankUp($this->config, $this->getServer()->getPluginManager(), $this->getLogger());
+        if ($this->rankUp->initPurePerms() == false) {
+            $this->getServer()->getPluginManager()->disablePlugin($this);
+        }
         $this->data = new PMConfig($this->getDataFolder()."data.properties", PMConfig::PROPERTIES);
         //TimerTask
         $this->getServer()->getScheduler()->scheduleDelayedRepeatingTask(new TimerTask($this), 1200, 1200);
@@ -64,10 +67,6 @@ class VoteRanks extends PluginBase{
                 break;
             case "1":
                     $this->requestApiTaks($player->getName(), false);
-
-                    if ($this->rankUp->initPurePerms() == false) {
-                        $this->getServer()->getPluginManager()->disablePlugin($this);
-                    }
 
                     $this->rankUp->rankUp($this, $player);
                     $command = "say " . $this->config->getMessage("vote-success");
