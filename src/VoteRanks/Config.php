@@ -11,6 +11,8 @@ class Config {
 
     private $ranks;
 
+    private $voteRanks;
+
     function __construct($configFile)
     {
         $config = yaml_parse(file_get_contents($configFile));
@@ -19,6 +21,7 @@ class Config {
         $this->voteUrl = $config["VoteURL"];
         $this->ranks = $config["Ranks"];
         $this->autoRanks = $config["AutoRanks"];
+        $this->voteRanks = $config["VoteRanks"];
         $this->messages = $config["Messages"];
     }
 
@@ -37,11 +40,18 @@ class Config {
         return $this->ranks;
     }
 
+    public function getVoteRanks()
+    {
+        return $this->voteRanks;
+    }
+
     public function getAutoRankMinutes($userGroup)
     {
         if(array_key_exists($userGroup, $this->autoRanks)) {
             return $this->autoRanks[$userGroup];
         }
+
+        return false;
     }
 
     public function getRankId($userGroup)
@@ -49,6 +59,8 @@ class Config {
         if(array_key_exists($userGroup, $this->ranks)) {
             return intval($this->ranks[$userGroup]);
         }
+
+        return false;
     }
 
     public function getMessage($messageId)

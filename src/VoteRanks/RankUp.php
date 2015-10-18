@@ -68,7 +68,7 @@ class RankUp {
         if(array_key_exists($userGroup, $this->config->getRanks())){
             $oldRankId = $this->config->getRankId($userGroup);
             $newRankId = $oldRankId + 1;
-            $newRank = array_search($newRankId, $this->config->getRanks());
+            $newRank = array_search($newRankId, $this->config->getVoteRanks());
             if($newRank !== false){
                 $pureRank = $this->getPureRank($newRank);
                 if ($pureRank != null) {
@@ -87,10 +87,14 @@ class RankUp {
         $oldRankId = $this->config->getRankId($userGroup);
         $oldRankMinutes = $this->config->getAutoRankMinutes($userGroup);
         $timeplayed = $plugin->data->get(strtolower($player->getName()));
-        $newRankId = $oldRankId + 1;
-        $newRank = array_search($newRankId, $this->config->getRanks());
+        $newRank = false;
+        if($oldRankId !== false) {
+            $newRankId = $oldRankId + 1;
+            $newRank = array_search($newRankId, $this->config->getRanks());
+            $newRankMinutes = $this->config->getAutoRankMinutes($newRank);
+        }
 
-        if($newRank !== false && $timeplayed >= $this->config->getAutoRankMinutes($newRank)){
+        if($newRank !== false && $newRankMinutes !== false && $timeplayed >= $newRankMinutes){
             $pureRank = $this->getPureRank($newRank);
             if ($pureRank != null) {
                 $command = "say " . str_replace("##player##",$player->getName(),$this->config->getMessage("timer-newrank"));
