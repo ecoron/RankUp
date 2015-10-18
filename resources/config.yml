@@ -12,6 +12,11 @@ Ranks:
     Gold: 4
     Member: 5
 
+# time to reach this rank, ranks must have the same name like in pureperms
+AutoRanks:
+    Guest: true
+    Silver: 20
+
 #messages
 Messages:
     command-in-game: "Command must be used in-game."
@@ -24,3 +29,9 @@ Messages:
     vote-nextday: "You've already voted today! Come back tomorrow to vote again."
     vote-success: "##player## voted with /vote and got a higher rank!"
     vote-open: "You haven't voted yet!\n +++ ##voteurl## +++ \nVote to get higher rank!"
+    timer-usage: "Use /tr check ##player##"
+    timer-neverplayed: "Player ##player## never played on this server"
+    timer-newplayer: "##player## has played less than 1 minute on this server"
+    timer-rankis: "Rank is: ##rank##"
+    timer-timeplayed: "You have played ##timeplayed## minutes on this server. ##timetoplay## until next rankup"
+    timer-timeplayer: "Has played ##timeplayed## minutes on this server"

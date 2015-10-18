@@ -80,4 +80,35 @@ class RankUp {
         $this->logger->alert($message);
     }
 
+    public function autoRankUp($data)
+    {
+        $userGroup = $this->getUserGroup($player);
+        $oldRankId = $this->config->getRankId($userGroup);
+        $oldRankMinutes = $this->config->getAutoRankMinutes($userGroup);
+        $timeplayed = $data->get(strtolower($player->getName()));
+        $newRankId = $oldRankId + 1;
+        $newRank = array_search($newRankId, $this->config->getRanks());
+
+        if($newRank !== false && $timplayed >= $this->config->getAutoRankMinutes($newrank)){
+            $pureRank = $this->getPureRank($newRank);
+            if ($pureRank != null) {
+                return $this->setRank($plugin, $player, $pureRank, $newRank);
+            }
+        }
+    }
+
+    public function getTimeToAutoRankUp($data)
+    {
+        $userGroup = $this->getUserGroup($player);
+        $oldRankId = $this->config->getRankId($userGroup);
+        $timeplayed = $data->get(strtolower($player->getName()));
+        $newRankId = $oldRankId + 1;
+        $newRank = array_search($newRankId, $this->config->getRanks());
+        if($newRank !== false && $timplayed < $this->config->getAutoRankMinutes($newrank)){
+            return $this->config->getAutoRankMinutes($newrank) - $timplayed;
+        }
+
+        return false;
+    }
+
 }

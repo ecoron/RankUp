@@ -7,6 +7,8 @@ class Config {
 
     private $voteUrl;
 
+    private $autoRanks;
+
     private $ranks;
 
     function __construct($configFile)
@@ -16,6 +18,7 @@ class Config {
         $this->apiKey = $config["APIKey"];
         $this->voteUrl = $config["VoteURL"];
         $this->ranks = $config["Ranks"];
+        $this->autoRanks = $config["AutoRanks"];
         $this->messages = $config["Messages"];
     }
 
@@ -32,6 +35,11 @@ class Config {
     public function getRanks()
     {
         return $this->ranks;
+    }
+
+    public function getAutoRankMinutes($userGroup)
+    {
+        $minutes = $this->autoRanks[$userGroup];
     }
 
     public function getRankId($userGroup)

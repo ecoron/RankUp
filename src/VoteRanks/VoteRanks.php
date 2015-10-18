@@ -6,15 +6,18 @@ use pocketmine\command\CommandSender;
 use pocketmine\command\ConsoleCommandSender;
 use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
+use pocketmine\utils\Config as PMConfig;
 use pocketmine\utils\TextFormat;
 use VoteRanks\Config;
 use VoteRanks\RankUp;
 use VoteRanks\VoteRankTask;
+use VoteRanks\TimerTask;
 
 
 class VoteRanks extends PluginBase{
 
     var $config;
+    var $data;
     var $voteRankTask;
     var $rankUp;
 
@@ -27,6 +30,12 @@ class VoteRanks extends PluginBase{
         $this->config = new Config($this->getDataFolder() . "config.yml");
         $this->voteRankTask = new VoteRankTask($this->config);
         $this->rankUp = new RankUp($this->config, $this->getServer()->getPluginManager(), $this->getLogger());
+        $this->data = new PMConfig($this->getDataFolder()."data.properties", PMConfig::PROPERTIES);
+        //TimerTask
+        $this->getServer()->getScheduler()->scheduleDelayedRepeatingTask(new TimerTask($this), 1200, 1200);
+        # Command
+        $this->timerTaskCommand = new TimeTaskCommand($this);
+
     }
 
     public function onDisable(){
@@ -39,6 +48,8 @@ class VoteRanks extends PluginBase{
         }
         if($player->hasPermission("voteranks") || $player->hasPermission("voteranks.vote")) {
             $this->requestApiTaks($player->getName(), true);
+        } elseif (strtolower($cmd->getName()) === "timeranks"){
+                $this->timerTaskCommand->run($player, $args);
         } else {
             $player->sendMessage($this->config->getMessage("no-permission"));
         }
