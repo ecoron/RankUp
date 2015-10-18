@@ -52,7 +52,8 @@ class VoteRanks extends PluginBase{
         if($player->hasPermission("voteranks") || $player->hasPermission("voteranks.vote")) {
             $this->requestApiTaks($player->getName(), true);
         } elseif (strtolower($cmd->getName()) === "timeranks"){
-                $this->timerTaskCommand->run($player, $args);
+                $message = $this->timerTaskCommand->run($player, $args);
+                $player->sendMessage($message);
         } else {
             $player->sendMessage($this->config->getMessage("no-permission"));
         }
