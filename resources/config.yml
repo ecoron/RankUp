@@ -15,6 +15,11 @@ Ranks:
     rank4: 4
     rank5: 5
 
+JobRanks:
+    job1: rank5
+    job2: rank5
+    job3: rank5
+
 VoteRanks:
     Guest: 1
     rank2: 2
@@ -48,3 +53,5 @@ Messages:
     timer-rankis: "Rank is: ##rank##"
     timer-timeplayed: "You have played ##timeplayed## minutes on this server.\n ##timetoplay## minutes until next rankup"
     timer-timeplayer: "Has played ##timeplayed## minutes on this server"
+    job-list: "You can choose one of this jobs: ##joblist##"
+    job-choose: "Please choose one of the jobs: ##joblist##"
