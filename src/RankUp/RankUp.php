@@ -104,6 +104,27 @@ class RankUp {
         }
     }
 
+    public function jobRankUp(MainRankUp $plugin, Player $player, array $args) {
+        $userGroup = $this->getUserGroup($player);
+        $oldRankId = $this->config->getRankId($userGroup);
+        $jobs = $this->config->getJobRanks();
+
+        $sub = array_shift($args);
+        switch(strtolower($sub)){
+            case "list":
+                return str_replace("##joblist##", implode(', ', array_keys($jobs)), $this->config->getMessage("job-list"));
+                break;
+            case "start":
+                    if (!empty(strtolower($args[0]))) {
+                        //todo: job change logic
+                    }
+                    return str_replace("##joblist##", implode(', ', array_keys($jobs)), $this->config->getMessage("job-choose"));
+
+                break;
+            default:
+                return false;
+    }
+
     public function getTimeToAutoRankUp($data, Player $player)
     {
         $userGroup = $this->getUserGroup($player);

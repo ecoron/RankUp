@@ -1,4 +1,4 @@
-# RankUp 1.0
+# RankUp 1.1
 
 A @PocketMine MCPE server plugin. Player gets a higher rank as reward for voting or
 after some time playing on the server.
@@ -8,7 +8,7 @@ RankUp requires PurePerms v1.1.11 or v1.1.12 on your server
 
 ##Download and Install
 
-### [Download: RankUp.phar](https://s3-eu-west-1.amazonaws.com/devron/RankUp.phar)
+### [Download: RankUp.phar v1.0](https://s3-eu-west-1.amazonaws.com/devron/RankUp.phar)
 
 
 and copy the file into your plugins folder.
