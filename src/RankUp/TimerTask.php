@@ -1,9 +1,9 @@
 <?php
 
-namespace VoteRanks;
+namespace RankUp;
 
 use pocketmine\scheduler\PluginTask;
-use VoteRanks\VoteRanks;
+use RankUp\VoteRanks;
 
 class TimerTask extends PluginTask{
 

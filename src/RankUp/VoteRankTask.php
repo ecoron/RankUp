@@ -1,5 +1,5 @@
 <?php
-namespace VoteRanks;
+namespace RankUp;
 
 use pocketmine\Player;
 use pocketmine\scheduler\AsyncTask;
@@ -32,7 +32,7 @@ class VoteRankTask extends AsyncTask
 
         $player = $server->getPlayer($this->player);
         if($player instanceof Player && in_array($this->data, array(0,1,2))) {
-            $server->getPluginManager()->getPlugin("VoteRanks")->executeRankUp($player, $this->data, $this->gotreward);
+            $server->getPluginManager()->getPlugin("RankUp")->executeRankUp($player, $this->data, $this->gotreward);
         }
 
     }

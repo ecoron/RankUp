@@ -1,11 +1,11 @@
 <?php
 
-namespace VoteRanks;
+namespace RankUp;
 
 use pocketmine\command\CommandSender;
 use pocketmine\Player;
-use VoteRanks\VoteRanks;
-use VoteRanks\Config;
+use RankUp\VoteRanks;
+use RankUp\Config;
 
 class TimerTaskCommand{
 

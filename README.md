@@ -1,9 +1,10 @@
-# VoteRanks 1.0
+# RankUp 1.0
 
-A @PocketMine MCPE server plugin. Player gets a higher rank as reward for voting.
+A @PocketMine MCPE server plugin. Player gets a higher rank as reward for voting or
+after some time playing on the server.
 For mcpe 0.11.1 / 0.12.1 with api 1.12.0 / 1.13.0
 
-VoteRanks requires PurePerms v1.1.11 or v1.1.12 on your server
+RankUp requires PurePerms v1.1.11 or v1.1.12 on your server
 
 ##Download and Install
 
@@ -73,7 +74,7 @@ AutoRanks:
 #messages
 Messages:
     command-in-game: "Command must be used in-game."
-    error-fetching-vote: "[VoteRanks] Error fetching vote status! Try again later."
+    error-fetching-vote: "[RankUp] Error fetching vote status! Try again later."
     no-permission: "You do not have permission to vote."
     pureperms-loaded: "Successfully loaded with PurePerms"
     pureperms-notfound: "Dependency PurePerms not found"

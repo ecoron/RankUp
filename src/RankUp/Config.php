@@ -1,5 +1,5 @@
 <?php
-namespace VoteRanks;
+namespace RankUp;
 
 class Config {
 

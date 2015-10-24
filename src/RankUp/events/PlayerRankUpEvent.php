@@ -1,10 +1,10 @@
 <?php
-namespace VoteRanks\events;
+namespace RankUp\events;
 
 use pocketmine\event\Cancellable;
 use pocketmine\event\plugin\PluginEvent;
 use pocketmine\Player;
-use VoteRanks\VoteRanks;
+use RankUp\VoteRanks;
 
 class PlayerRankUpEvent extends PluginEvent implements Cancellable{
 

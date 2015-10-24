@@ -1,5 +1,5 @@
 <?php
-namespace VoteRanks;
+namespace RankUp;
 
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
@@ -8,9 +8,9 @@ use pocketmine\Player;
 use pocketmine\plugin\Plugin;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\TextFormat;
-use VoteRanks\Config;
-use VoteRanks\VoteRanks;
-use VoteRanks\events\PlayerRankUpEvent;
+use RankUp\Config;
+use RankUp\VoteRanks;
+use RankUp\events\PlayerRankUpEvent;
 
 class RankUp {
 

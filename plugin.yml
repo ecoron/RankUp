@@ -1,12 +1,12 @@
-name: VoteRanks
-main: VoteRanks\VoteRanks
+name: RankUp
+main: RankUp\VoteRanks
 version: 1.0
 api: [1.12.0]
 
 load: POSTWORLD
 author: [ecoron, LittleRon]
 description: rankup a player as vote reward, or after time playing on server
-website: https://github.com/ecoron/VoteRanks
+website: https://github.com/ecoron/RankUp
 commands:
     voteranks:
         description: rankup a player as vote reward

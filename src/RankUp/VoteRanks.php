@@ -1,5 +1,5 @@
 <?php
-namespace VoteRanks;
+namespace RankUp;
 
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
@@ -8,11 +8,11 @@ use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config as PMConfig;
 use pocketmine\utils\TextFormat;
-use VoteRanks\Config;
-use VoteRanks\RankUp;
-use VoteRanks\VoteRankTask;
-use VoteRanks\TimerTask;
-use VoteRanks\TimerTaskCommand;
+use RankUp\Config;
+use RankUp\RankUp;
+use RankUp\VoteRankTask;
+use RankUp\TimerTask;
+use RankUp\TimerTaskCommand;
 
 
 class VoteRanks extends PluginBase{
