@@ -8,6 +8,16 @@ RankUp requires PurePerms v1.1.11 or v1.1.12 on your server
 
 ##Download and Install
 
+### [Download: RankUp.phar](https://s3-eu-west-1.amazonaws.com/devron/RankUp.phar)
+
+
+and copy the file into your plugins folder.
+
+restart your server.
+
+modify the config.yml
+
+restart again
 
 ##Usage / Command
 
