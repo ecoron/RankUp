@@ -9,7 +9,7 @@ use pocketmine\plugin\Plugin;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\TextFormat;
 use RankUp\Config;
-use RankUp\VoteRanks;
+use RankUp\MainRankUp;
 use RankUp\events\PlayerRankUpEvent;
 
 class RankUp {
@@ -49,7 +49,7 @@ class RankUp {
         return $ppusergroup->getName();
     }
 
-    public function setRank(VoteRanks $plugin, Player $player, $pureRank, $rank)
+    public function setRank(MainRankUp $plugin, Player $player, $pureRank, $rank)
     {
         $message = str_replace("##rank##", $rank, $this->config->getMessage("rank-new"));
         $event = new PlayerRankUpEvent($plugin, $player, $rank, $message);
@@ -61,7 +61,7 @@ class RankUp {
         }
     }
 
-    public function rankUp(VoteRanks $plugin, Player $player)
+    public function rankUp(MainRankUp $plugin, Player $player)
     {
         $userGroup = $this->getUserGroup($player);
 
@@ -81,7 +81,7 @@ class RankUp {
         $this->logger->alert($message);
     }
 
-    public function autoRankUp(VoteRanks $plugin, Player $player)
+    public function autoRankUp(MainRankUp $plugin, Player $player)
     {
         $userGroup = $this->getUserGroup($player);
         $oldRankId = $this->config->getRankId($userGroup);

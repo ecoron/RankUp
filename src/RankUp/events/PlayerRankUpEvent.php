@@ -4,7 +4,7 @@ namespace RankUp\events;
 use pocketmine\event\Cancellable;
 use pocketmine\event\plugin\PluginEvent;
 use pocketmine\Player;
-use RankUp\VoteRanks;
+use RankUp\MainRankUp;
 
 class PlayerRankUpEvent extends PluginEvent implements Cancellable{
 
@@ -14,7 +14,7 @@ class PlayerRankUpEvent extends PluginEvent implements Cancellable{
     private $newRank;
     private $message;
 
-    public function __construct(VoteRanks $plugin, Player $player, $newRank, $message){
+    public function __construct(MainRankUp $plugin, Player $player, $newRank, $message){
         parent::__construct($plugin);
         $this->player = $player;
         $this->newRank = $newRank;

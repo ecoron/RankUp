@@ -4,7 +4,7 @@ namespace RankUp;
 
 use pocketmine\command\CommandSender;
 use pocketmine\Player;
-use RankUp\VoteRanks;
+use RankUp\MainRankUp;
 use RankUp\Config;
 
 class TimerTaskCommand{
@@ -13,7 +13,7 @@ class TimerTaskCommand{
 
     private $config;
 
-    public function __construct(VoteRanks $plugin, Config $config){
+    public function __construct(MainRankUp $plugin, Config $config){
         $this->plugin = $plugin;
         $this->config = $config;
     }

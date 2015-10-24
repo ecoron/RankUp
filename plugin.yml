@@ -1,5 +1,5 @@
 name: RankUp
-main: RankUp\VoteRanks
+main: RankUp\MainRankUp
 version: 1.0
 api: [1.12.0]
 

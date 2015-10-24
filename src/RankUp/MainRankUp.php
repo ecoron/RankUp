@@ -15,7 +15,7 @@ use RankUp\TimerTask;
 use RankUp\TimerTaskCommand;
 
 
-class VoteRanks extends PluginBase{
+class MainRankUp extends PluginBase{
 
     var $config;
     var $data;

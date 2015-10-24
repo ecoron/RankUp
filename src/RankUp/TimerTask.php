@@ -3,11 +3,11 @@
 namespace RankUp;
 
 use pocketmine\scheduler\PluginTask;
-use RankUp\VoteRanks;
+use RankUp\MainRankUp;
 
 class TimerTask extends PluginTask{
 
-    public function __construct(VoteRanks $plugin){
+    public function __construct(MainRankUp $plugin){
         parent::__construct($plugin);
         $this->plugin = $plugin;
     }
