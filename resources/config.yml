@@ -14,11 +14,17 @@ Ranks:
     rank3: 3
     rank4: 4
     rank5: 5
+    job1: 6
+    job2: 7
+    job3: 8
+    Admin: 20
+    Owner: 50
+    OP: 100
 
 JobRanks:
-    job1: rank5
-    job2: rank5
-    job3: rank5
+    job1: 5
+    job2: 5
+    job3: 5
 
 VoteRanks:
     Guest: 1
