@@ -1,35 +1,33 @@
-# API key; Can be found on your server settings page.
+# API key; Can be found on your server settings page (minecraftpocket-servers.com)
 APIKey: ""
 
 # URL where players can vote for this server;
 VoteURL: ""
 
 # list of ranks that can be reached. cutomize this with your server ranks
+# ranks must have the same name like the group in pureperms
+# add all groups that exists, and add the order by giving them a value from 1 to X
+# where 1 is the lowest rank and X the highest
 Ranks:
     Guest: 1
-    Stone: 2
-    Bronze: 3
-    Silver: 4
-    Gold: 5
-    Member: 6
+    rank2: 2
+    rank3: 3
+    rank4: 4
+    rank5: 5
 
 VoteRanks:
     Guest: 1
-    Stone: 2
-    Bronze: 3
-    Silver: 4
-    Gold: 5
-    Member: 6
+    rank2: 2
+    rank3: 3
 
 # time to reach this rank, ranks must have the same name like in pureperms
 AutoRanks:
     Guest: true
-    Stone: 20
-    Bronze: 60
-    Silver: 120
-    Gold: 240
-    Member: 720
-    
+    rank1: 20
+    rank2: 60
+    rank3: 120
+    rank4: 240
+    rank5: 720
 
 #messages
 Messages:

@@ -19,9 +19,9 @@ class TimerTask extends PluginTask{
             }else{
                 $this->plugin->data->set($name, 1);
             }
-            $this->plugin->data->save();
             $this->plugin->rankUp->autoRankUp($this->plugin, $player);
         }
+        $this->plugin->data->save();
         return true;
     }
 
