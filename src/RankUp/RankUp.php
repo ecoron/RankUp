@@ -135,7 +135,7 @@ class RankUp {
 
                 break;
             default:
-                return f$this->config->getMessage("job-usage");
+                return $this->config->getMessage("job-usage");
         }
     }
 

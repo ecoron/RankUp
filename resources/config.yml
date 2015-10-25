@@ -61,6 +61,6 @@ Messages:
     timer-timeplayer: "Has played ##timeplayed## minutes on this server"
     job-list: "You can choose one of this jobs: ##joblist##"
     job-choose: "Please choose one of the jobs: ##joblist##"
-    job-rank-low: "You can't choose a job, your rank is to low"
+    job-rank-low: "You can't choose this job, your rank is to low"
     job-rank-error: "Upps there is an ERROR, try again later"
-    job-usage: "list jobs: /job list\n choose job: /job start <jobname>"
+    job-usage: "list jobs: /job list\nchoose job: /job start <jobname>"
