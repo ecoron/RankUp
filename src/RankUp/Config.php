@@ -9,6 +9,8 @@ class Config {
 
     private $autoRanks;
 
+    private $jobRanks;
+
     private $ranks;
 
     private $voteRanks;
@@ -21,6 +23,7 @@ class Config {
         $this->voteUrl = $config["VoteURL"];
         $this->ranks = $config["Ranks"];
         $this->autoRanks = $config["AutoRanks"];
+        $this->jobRanks = $config["JobRanks"];
         $this->voteRanks = $config["VoteRanks"];
         $this->messages = $config["Messages"];
     }
@@ -38,6 +41,11 @@ class Config {
     public function getRanks()
     {
         return $this->ranks;
+    }
+
+    public function getJobRanks()
+    {
+        return $this->jobRanks;
     }
 
     public function getVoteRanks()

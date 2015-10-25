@@ -14,6 +14,17 @@ Ranks:
     rank3: 3
     rank4: 4
     rank5: 5
+    job1: 6
+    job2: 7
+    job3: 8
+    Admin: 20
+    Owner: 50
+    OP: 100
+
+JobRanks:
+    job1: 5
+    job2: 5
+    job3: 5
 
 VoteRanks:
     Guest: 1
@@ -48,3 +59,8 @@ Messages:
     timer-rankis: "Rank is: ##rank##"
     timer-timeplayed: "You have played ##timeplayed## minutes on this server.\n ##timetoplay## minutes until next rankup"
     timer-timeplayer: "Has played ##timeplayed## minutes on this server"
+    job-list: "You can choose one of this jobs: ##joblist##"
+    job-choose: "Please choose one of the jobs: ##joblist##"
+    job-rank-low: "You can't choose this job, your rank is to low"
+    job-rank-error: "Upps there is an ERROR, try again later"
+    job-usage: "list jobs: /job list\nchoose job: /job start <jobname>"

@@ -104,6 +104,41 @@ class RankUp {
         }
     }
 
+    public function jobRankUp(MainRankUp $plugin, Player $player, array $args) {
+        $userGroup = $this->getUserGroup($player);
+        $oldRankId = $this->config->getRankId($userGroup);
+        $jobConfig = $this->config->getJobRanks();
+        $jobNames = array_keys($jobConfig);
+
+        $sub = array_shift($args);
+        switch(strtolower($sub)){
+            case "list":
+                return str_replace("##joblist##", implode(', ', $jobNames), $this->config->getMessage("job-list"));
+                break;
+            case "start":
+                    if (!empty($args[0]) && in_array($args[0], $jobNames)) {
+                        if ($oldRankId >= $jobConfig[$args[0]]) {
+                            //check if playerrank is allowed to choose a jobrank
+                            $newRankId = $this->config->getRankId($args[0]);
+                            $newRank = array_search($newRankId, $this->config->getRanks());
+                            if($newRank !== false){
+                                $pureRank = $this->getPureRank($newRank);
+                                if ($pureRank != null) {
+                                    return $this->setRank($plugin, $player, $pureRank, $newRank);
+                                }
+                            }
+                            return $this->config->getMessage("job-rank-error");
+                        }
+                        return $this->config->getMessage("job-rank-low");
+                    }
+                    return str_replace("##joblist##", implode(', ', $jobNames), $this->config->getMessage("job-choose"));
+
+                break;
+            default:
+                return $this->config->getMessage("job-usage");
+        }
+    }
+
     public function getTimeToAutoRankUp($data, Player $player)
     {
         $userGroup = $this->getUserGroup($player);

@@ -1,10 +1,10 @@
 name: RankUp
 main: RankUp\MainRankUp
-version: 1.0
+version: 1.1
 api: [1.12.0]
 
 load: POSTWORLD
-author: [ecoron, LittleRon]
+author: ecoron,LittleRon
 description: rankup a player as vote reward, or after time playing on server
 website: https://github.com/ecoron/RankUp
 commands:
@@ -18,10 +18,18 @@ commands:
         usage: "/tr"
         aliases: [tr, timeranks]
         permission: timeranks.command
+    jobranks:
+        description: list/choose jobranks
+        usage: "/job [list/start] <jobrank>"
+        aliases: [job, jobranks, jr]
+        permission: jobranks.command
 permissions:
     voteranks.command:
         description: "rankup a player as vote reward"
         default: true
     timeranks.command:
         description: "check time to play for next rank"
+        default: true
+    jobranks.command:
+        description: "list or choose jobranks"
         default: true

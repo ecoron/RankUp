@@ -54,6 +54,9 @@ class MainRankUp extends PluginBase{
         } elseif (strtolower($cmd->getName()) === "timeranks"){
                 $message = $this->timerTaskCommand->run($player, $args);
                 $player->sendMessage($message);
+        } elseif (strtolower($cmd->getName()) === "jobranks") {
+            $message = $this->rankUp->jobRankUp($this, $player, $args);
+            $player->sendMessage($message);
         } else {
             $player->sendMessage($this->config->getMessage("no-permission"));
         }
