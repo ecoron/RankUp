@@ -108,7 +108,7 @@ class RankUp {
         $userGroup = $this->getUserGroup($player);
         $oldRankId = $this->config->getRankId($userGroup);
         $jobConfig = $this->config->getJobRanks();
-        $jobNames = array_keys($jobs);
+        $jobNames = array_keys($jobConfig);
 
         $sub = array_shift($args);
         switch(strtolower($sub)){
@@ -116,7 +116,7 @@ class RankUp {
                 return str_replace("##joblist##", implode(', ', $jobNames), $this->config->getMessage("job-list"));
                 break;
             case "start":
-                    if (!empty($args[0]) && array_key_exists($args[0], $jobNames)) {
+                    if (!empty($args[0]) && in_array($args[0], $jobNames)) {
                         if ($oldRankId >= $jobConfig[$args[0]]) {
                             //check if playerrank is allowed to choose a jobrank
                             $newRankId = $this->config->getRankId($args[0]);
@@ -135,7 +135,8 @@ class RankUp {
 
                 break;
             default:
-                return false;
+                return f$this->config->getMessage("job-usage");
+        }
     }
 
     public function getTimeToAutoRankUp($data, Player $player)

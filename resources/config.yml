@@ -63,3 +63,4 @@ Messages:
     job-choose: "Please choose one of the jobs: ##joblist##"
     job-rank-low: "You can't choose a job, your rank is to low"
     job-rank-error: "Upps there is an ERROR, try again later"
+    job-usage: "list jobs: /job list\n choose job: /job start <jobname>"
