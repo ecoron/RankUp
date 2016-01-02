@@ -135,7 +135,21 @@ class RankUp {
 
                 break;
             case "stop":
-                # @todo: add logic here
+                $timeplayed = $plugin->data->get(strtolower($player->getName()));
+                ranks = $this->config->getRanks();
+                //search the origin rank
+                foreach($ranks as $rankName => $rankId) {
+                    if($timeplayed >= $this->config->getAutoRankMinutes($rankName)){
+                        $newRank = $rankName;
+                    }
+                }
+                if($newRank !== false){
+                    $pureRank = $this->getPureRank($newRank);
+                    if ($pureRank != null) {
+                        return $this->setRank($plugin, $player, $pureRank, $newRank);
+                    }
+                }
+
                 return $this->config->getMessage("job-leave");
                 break;
             default:
