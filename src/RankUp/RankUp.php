@@ -135,11 +135,15 @@ class RankUp {
 
                 break;
             case "stop":
+                #@todo: add check if player has a jobrank, stop should only working with this
                 $timeplayed = $plugin->data->get(strtolower($player->getName()));
-                ranks = $this->config->getRanks();
+                $ranks = $this->config->getRanks();
+                $newRank = false;
                 //search the origin rank
                 foreach($ranks as $rankName => $rankId) {
-                    if($timeplayed >= $this->config->getAutoRankMinutes($rankName)){
+                    $timetoplay = $this->config->getAutoRankMinutes($rankName);
+                    //player can switch back only to an AutoRank timetoplay must have a value
+                    if(!empty($timetoplay) && $timeplayed >= $timetoplay){
                         $newRank = $rankName;
                     }
                 }
@@ -150,7 +154,7 @@ class RankUp {
                     }
                 }
 
-                return $this->config->getMessage("job-leave");
+                return $this->config->getMessage("job-usage");
                 break;
             default:
                 return $this->config->getMessage("job-usage");
