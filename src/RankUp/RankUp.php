@@ -134,6 +134,10 @@ class RankUp {
                     return str_replace("##joblist##", implode(', ', $jobNames), $this->config->getMessage("job-choose"));
 
                 break;
+            case "stop":
+                # @todo: add logic here
+                return $this->config->getMessage("job-leave");
+                break;
             default:
                 return $this->config->getMessage("job-usage");
         }
