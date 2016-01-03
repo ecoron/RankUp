@@ -134,6 +134,31 @@ class RankUp {
                     return str_replace("##joblist##", implode(', ', $jobNames), $this->config->getMessage("job-choose"));
 
                 break;
+            case "stop":
+                //stop works only if player has a jobrank
+                if(!in_array($userGroup, $jobNames)) {
+                    return $this->config->getMessage("job-no-stop");
+                }
+                $timeplayed = $plugin->data->get(strtolower($player->getName()));
+                $ranks = $this->config->getRanks();
+                $newRank = false;
+                //search the origin rank
+                foreach($ranks as $rankName => $rankId) {
+                    $timetoplay = $this->config->getAutoRankMinutes($rankName);
+                    //player can switch back only to an AutoRank timetoplay must have a value
+                    if(!empty($timetoplay) && $timeplayed >= $timetoplay){
+                        $newRank = $rankName;
+                    }
+                }
+                if($newRank !== false){
+                    $pureRank = $this->getPureRank($newRank);
+                    if ($pureRank != null) {
+                        return $this->setRank($plugin, $player, $pureRank, $newRank);
+                    }
+                }
+
+                return $this->config->getMessage("job-usage");
+                break;
             default:
                 return $this->config->getMessage("job-usage");
         }
@@ -147,7 +172,8 @@ class RankUp {
         $newRankId = $oldRankId + 1;
         $newRank = array_search($newRankId, $this->config->getRanks());
         if($newRank !== false && $timeplayed < $this->config->getAutoRankMinutes($newRank)){
-            return $this->config->getAutoRankMinutes($newRank) - $timeplayed;
+            $timetoplay = $this->config->getAutoRankMinutes($newRank);
+            return (!empty($timetoplay)) ? ($timetoplay - $timeplayed) : 0;
         }
 
         return false;

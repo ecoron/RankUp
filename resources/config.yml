@@ -43,7 +43,7 @@ AutoRanks:
 #messages
 Messages:
     command-in-game: "Command must be used in-game."
-    error-fetching-vote: "[VoteRanks] Error fetching vote status! Try again later."
+    error-fetching-vote: "[RankUp] Error fetching vote status! Try again later."
     no-permission: "You do not have permission to vote."
     pureperms-loaded: "Successfully loaded with PurePerms"
     pureperms-notfound: "Dependency PurePerms not found"
@@ -64,3 +64,4 @@ Messages:
     job-rank-low: "You can't choose this job, your rank is to low"
     job-rank-error: "Upps there is an ERROR, try again later"
     job-usage: "list jobs: /job list\nchoose job: /job start <jobname>"
+    job-no-stop: "You do not have a job to stop, use /job start <jobname> to start a job"
