@@ -43,7 +43,7 @@ AutoRanks:
 #messages
 Messages:
     command-in-game: "Command must be used in-game."
-    error-fetching-vote: "[VoteRanks] Error fetching vote status! Try again later."
+    error-fetching-vote: "[RankUp] Error fetching vote status! Try again later."
     no-permission: "You do not have permission to vote."
     pureperms-loaded: "Successfully loaded with PurePerms"
     pureperms-notfound: "Dependency PurePerms not found"

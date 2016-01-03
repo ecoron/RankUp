@@ -1,14 +1,16 @@
-# RankUp 1.1
+# RankUp 1.2
 
-A @PocketMine MCPE server plugin. Player gets a higher rank as reward for voting or
-after some time playing on the server.
-For mcpe 0.11.1 / 0.12.1 with api 1.12.0 / 1.13.0
+A MCPE server plugin for servers running on ImagicalMine or PocketMine builds.
+Player gets a higher rank as reward for voting or after some time playing on the server.
+Player can also start/stop jobs.
 
-RankUp requires PurePerms v1.1.11 or v1.1.12 on your server
+For mcpe 0.12.1 / 0.13.1 with api 1.12.0 / 1.13.0
+
+RankUp requires PurePerms v1.1.12 or higher on your server
 
 ##Download and Install
 
-### [Download: RankUp.phar v1.0](https://s3-eu-west-1.amazonaws.com/devron/RankUp.phar)
+### [Download: RankUp.phar v1.2](https://s3-eu-west-1.amazonaws.com/devron/RankUp_v12.phar)
 
 
 and copy the file into your plugins folder.
@@ -45,6 +47,26 @@ status of other players
 
 ```
 /tr check <playername>
+```
+
+###start / stop jobs
+
+job list
+
+```
+/job list
+```
+
+start job
+
+```
+/job start <jobname>
+```
+
+stop job, player will reseted to his actual AutoRank Group
+
+```
+/job stop
 ```
 
 ##Configuration
@@ -100,7 +122,12 @@ Messages:
     timer-rankis: "Rank is: ##rank##"
     timer-timeplayed: "You have played ##timeplayed## minutes on this server.\n ##timetoplay## minutes until next rankup"
     timer-timeplayer: "Has played ##timeplayed## minutes on this server"
-```
+    job-list: "You can choose one of this jobs: ##joblist##"
+    job-choose: "Please choose one of the jobs: ##joblist##"
+    job-rank-low: "You can't choose this job, your rank is to low"
+    job-rank-error: "Upps there is an ERROR, try again later"
+    job-usage: "list jobs: /job list\nchoose job: /job start <jobname>"
+    job-no-stop: "You do not have a job to stop, use /job start <jobname> to start a job"```
 
 ##Permissions
 
@@ -111,5 +138,8 @@ permissions:
         default: true
     timeranks.command:
         description: "check time to play for next rank"
+        default: true
+    jobranks.command:
+        description: "list or choose jobranks"
         default: true
 ```
