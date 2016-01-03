@@ -135,7 +135,10 @@ class RankUp {
 
                 break;
             case "stop":
-                #@todo: add check if player has a jobrank, stop should only working with this
+                //stop works only if player has a jobrank
+                if(!in_array($userGroup, $jobNames)) {
+                    return $this->config->getMessage("job-no-stop");
+                }
                 $timeplayed = $plugin->data->get(strtolower($player->getName()));
                 $ranks = $this->config->getRanks();
                 $newRank = false;
