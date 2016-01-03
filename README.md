@@ -127,7 +127,9 @@ Messages:
     job-rank-low: "You can't choose this job, your rank is to low"
     job-rank-error: "Upps there is an ERROR, try again later"
     job-usage: "list jobs: /job list\nchoose job: /job start <jobname>"
-    job-no-stop: "You do not have a job to stop, use /job start <jobname> to start a job"```
+    job-no-stop: "You do not have a job to stop, use /job start <jobname> to start a job"
+
+```
 
 ##Permissions
 
