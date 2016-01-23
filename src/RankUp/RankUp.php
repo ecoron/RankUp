@@ -147,7 +147,12 @@ class RankUp {
                     $timetoplay = $this->config->getAutoRankMinutes($rankName);
                     //player can switch back only to an AutoRank timetoplay must have a value
                     if(!empty($timetoplay) && $timeplayed >= $timetoplay){
-                        $newRank = $rankName;
+                        //check if the rank is higher then the fallback
+                        if($rankId >= $this->config->getJobStopFallback('id')) {
+                            $newRank = $rankName;
+                        } else {
+                            $newRank = $this->config->getJobStopFallback('title');
+                        }
                     }
                 }
                 if($newRank !== false){

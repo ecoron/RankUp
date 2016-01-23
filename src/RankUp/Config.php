@@ -11,6 +11,8 @@ class Config {
 
     private $jobRanks;
 
+    private $jobStopFallback;
+
     private $ranks;
 
     private $voteRanks;
@@ -24,6 +26,7 @@ class Config {
         $this->ranks = $config["Ranks"];
         $this->autoRanks = $config["AutoRanks"];
         $this->jobRanks = $config["JobRanks"];
+        $this->jobStopFallback = $config["JobStopFallback"];
         $this->voteRanks = $config["VoteRanks"];
         $this->messages = $config["Messages"];
     }
@@ -46,6 +49,11 @@ class Config {
     public function getJobRanks()
     {
         return $this->jobRanks;
+    }
+
+    public function getJobStopFallback($key)
+    {
+        return $this->jobStopFallback[$key];
     }
 
     public function getVoteRanks()

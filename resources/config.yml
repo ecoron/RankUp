@@ -26,6 +26,12 @@ JobRanks:
     job2: 5
     job3: 5
 
+# the fallbackrank if a player stop the job, for cases where players
+# reached a rank by voting but dint reached the required time in autoranks
+JobStopFallback:
+    id: 5
+    title: "rank5"
+
 VoteRanks:
     Guest: 1
     rank2: 2
