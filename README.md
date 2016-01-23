@@ -1,4 +1,4 @@
-# RankUp 1.2
+# RankUp 1.3
 
 A MCPE server plugin for servers running on ImagicalMine or PocketMine builds.
 Player gets a higher rank as reward for voting or after some time playing on the server.
@@ -10,7 +10,7 @@ RankUp requires PurePerms v1.1.12 or higher on your server
 
 ##Download and Install
 
-### [Download: RankUp.phar v1.2](https://s3-eu-west-1.amazonaws.com/devron/RankUp_v12.phar)
+### [Download: RankUp.phar v1.3](https://s3-eu-west-1.amazonaws.com/devron/RankUp_v1.3.phar)
 
 
 and copy the file into your plugins folder.
@@ -88,6 +88,23 @@ Ranks:
     rank3: 3
     rank4: 4
     rank5: 5
+    job1: 6
+    job2: 7
+    job3: 8
+    Admin: 20
+    Owner: 50
+    OP: 100
+
+JobRanks:
+    job1: 5
+    job2: 5
+    job3: 5
+
+# the fallback rank if a player stop the job, for cases where players
+# reached a rank by voting but dint reached the required time in autoranks
+JobStopFallback:
+    id: 5
+    title: "rank5"
 
 VoteRanks:
     Guest: 1
@@ -128,7 +145,6 @@ Messages:
     job-rank-error: "Upps there is an ERROR, try again later"
     job-usage: "list jobs: /job list\nchoose job: /job start <jobname>"
     job-no-stop: "You do not have a job to stop, use /job start <jobname> to start a job"
-
 ```
 
 ##Permissions
