@@ -44,7 +44,9 @@ class RankUp {
 
     public function getUserGroup(Player $player)
     {
-        $ppuser = $this->purePerms->getUser($player);
+        // $ppdata = $this->purePerms->getUserDataMgr();
+        $ppuser = $this->purePerms->getPlayer($player->getName());
+        // $ppusergroup = $ppdata->getGroup($player);
         $ppusergroup = $ppuser->getGroup();
         return $ppusergroup->getName();
     }
